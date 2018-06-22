@@ -35,9 +35,8 @@ halo.physical_units()
 
 f, ax = plt.subplots(1,2)
 plt.ion()
-whatdo = 0
 
-while whatdo == 0:
+while True:
     pynbody.analysis.angmom.faceon(halo)
     pynbody.plot.stars.render(halo.s, axes=ax[0], starsize=res, clear=False, width=wid)
 
@@ -46,12 +45,9 @@ while whatdo == 0:
     plt.show()
 
     z = int(input('What should I do (1: Zoom-out; 2: Zoom-in)? '))
-    if z == 1:
-        wid *= 1.5
-    elif z == 2:
-        wid *= 0.5
-    else:
-        whatdo = 1
+    if z == 1: wid *= 1.5
+    elif z == 2: wid *= 0.5
+    else: break
 
 '''
 Created on Sep 6, 2017
