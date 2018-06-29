@@ -18,7 +18,7 @@ import pynbody
 		Anything else = Exit
 
 Created on Sep 6, 2017
-@author: Anna Wright
+@author: Anna
 @author: Ray Sharma
 '''
 
