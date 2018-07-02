@@ -24,17 +24,17 @@ def wrap(relpos, boxsize=25e3):
         relpos[bad] = -1.0 * (relpos[bad] / np.abs(relpos[bad])) * np.abs(bphys - np.abs(relpos[bad]))
     return
 
-def findCentrals(halo_sample, SSC_sample, Rvir_sample, Mstar_sample, halo_all, SSC_all, Mstar_all, boxsize=25e3):
+def findCentrals(halo_sample, SSC_sample, Rvir_sample, Mvir_sample, halo_all, SSC_all, Mvir_all, boxsize=25e3):
     '''
     Identifies central halos in the current timestep using a scipy cKDTree and checking for halos within one virial radius of each halo.
     Args: 
         halo_sample: halo numbers of targets
         SSC_sample: [x,y,z] coordinates of targets
         Rvir_sample: virial radii of targets
-        Mstar_sample: stellar mass of targets
+        Mvir_sample: halo mass of targets
         halo_all: halo numbers of all objects in timestep
         SSC_all: [x,y,z] coordinates of all objects in timestep
-        Mstar_all: stellar mass of targets
+        Mvir_all: virial mass of targets
         boxsize: size of simulation box in comoving kpc
     Output:
         central_flag: array to flag central objects with a 1.0
@@ -54,7 +54,11 @@ def findCentrals(halo_sample, SSC_sample, Rvir_sample, Mstar_sample, halo_all, S
         if len(query) == 0:
             matches += [i]
         else:
-            matches += [Mvir_all[query].argmax()]
+            try:
+                biggest_halo = halo_numbers[Mvir[query].argmax()]
+                matches += [int(np.where(halo_sample == biggest_halo)[0])]
+            except:
+                continue
 
     try: matches = np.unique(matches)
     except: matches = np.zeros(len(halo_sample))
