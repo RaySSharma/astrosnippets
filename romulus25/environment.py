@@ -1,6 +1,6 @@
 '''
 Created 07/02/18
-@author: Ray Sharma
+- Ray Sharma
 '''
 def arrFilter(arr, condition):
     '''

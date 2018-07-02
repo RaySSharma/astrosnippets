@@ -12,7 +12,7 @@ from numpy import log10
 			ex: cosmo25
 
 Created on 06/29/18
-@author: Ray Sharma
+- Ray Sharma
 '''
 
 ### Parameters to change ###
