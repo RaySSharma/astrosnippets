@@ -15,19 +15,20 @@ import scalebar
 		timestep: Timestep of interest in simulation
 		halos: List of halo numbers compatible with pynbody halo indexing
 		outfile: Output image file
-
+		del_panels: Number of panels to delete starting from bottom right
 Created 06/28/18
 - Ray Sharma
 '''
 ### Parameters to change ###
-nrow = 5
-ncol = 4 # Select an even number of columns
+nrow = 6
+ncol = 6 # Select an even number of columns
 res = 0.175
 fname = '/data/REPOSITORY/cosmo/romulus25/cosmo25p.768sg1bwK1BHe75.'
 timestep = 7779
-halos = [293, 197, 329, 250, 307, 314, 328, 379, 470, 223, 247, 312, 587,
-       403, 428, 614, 233, 226, 362, 383]
-outfile = 'no_BH.png'
+halos = [99, 156, 163, 168, 182, 187, 208, 210, 218, 222, 232, 242, 248,
+       259, 323, 333]
+outfile = 'dwarfs.png'
+del_panels = 4
 ############################
 
 
@@ -76,6 +77,6 @@ for i in range(nrow):
 		j += 2
 		halo_count += 1
 
-delaxis = plt.subplot(gs[nrow-1,ncol-1]); f.delaxes(delaxis)
-delaxis = plt.subplot(gs[nrow-1,ncol-2]); f.delaxes(delaxis)
+for i in range(1, del_panels+1):
+	delaxis = plt.subplot(gs[nrow-1,ncol-i]); f.delaxes(delaxis)
 f.savefig(outfile)
