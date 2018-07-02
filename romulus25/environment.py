@@ -39,6 +39,7 @@ def findCentrals(halo_sample, SSC_sample, Rvir_sample, Mstar_sample, halo_all, S
     Output:
         central_flag: array to flag central objects with a 1.0
     '''
+    wrap(SSC_all); wrap(SSC_sample)
     SSC_all += (boxsize / 2.) #Shift coordinates from [boxsize/2, boxsize/2] to [0, boxsize]
     SSC_sample += (boxsize / 2.)
 
@@ -76,6 +77,7 @@ def findIsolated(halo_sample, SSC_sample, Rvir_sample, Mstar_sample, halo_all, S
     Output:
         isolated_flag: array to flag isolated objects with a 1.0
     '''
+    wrap(SSC_all); wrap(SSC_sample)
     SSC_all += (boxsize / 2.) #Shift coordinates from [boxsize/2, boxsize/2] to [0, boxsize]
     SSC_sample += (boxsize / 2.)
 
